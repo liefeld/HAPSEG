@@ -1,0 +1,224 @@
+#Mon, 03 Feb 2014 14:30:04 -0500
+name=HAPSEG
+commandLine=<R2.15_Rscript> --no-save --quiet --slave --no-restore <libdir>run_hapseg.R --adj.atten\=FALSE --out.file\=./<out.file.name> --plate.name\=<plate.name> --array.name\=<array.name> <seg.file> --snp.file\=<snp.file> --genome.build\=<genome.build> --platform\=<platform> --use.pop\=<use.pop> --impute.gt\=<impute.gt> --plot.segfit\=<plot.segfit> --merge.small\=<merge.small> --merge.close\=<merge.close> --min.seg.size\=<min.seg.size> --is.normal\=<normal> --out.p\=<out.p> --seg.merge.thresh\=<seg.merge.thresh> --use.normal\=<use.normal> --drop.x\=<drop.x> --drop.y\=<drop.y> <calls.file> <mn.sample> --calibrate.data\=<calibrate.data> <clusters.file> <prev.theta.file>
+license=license.txt
+taskDoc=doc.html
+fileFormat=segdat.RData;jpg
+taskType=SNP Analysis
+os=any
+language=R2.15.3
+cpuType=any
+privacy=public
+description=[**Beta Release** Contact gp-help with any issues. Check stdout.txt and stderr.txt for errors] A probabilistic method to interpret bi-allelic marker data in cancer samples.
+version=Updated to make use of the R package installer.
+minGenePatternVersion=3.7.0
+
+p1_default_value=
+p1_description=Name of the sample plate
+p1_name=plate.name
+p1_optional=
+p1_prefix_when_specified=
+p1_type=java.lang.String
+p1_value=
+
+p2_default_value=
+p2_description=Name of the chip that was run
+p2_name=array.name
+p2_optional=
+p2_prefix_when_specified=
+p2_type=java.lang.String
+p2_value=
+
+p3_default_value=
+p3_description=Segmented copy number data file for this sample. If not provided, HAPSEG will segment the data for you.
+p3_fileFormat=cbs.txt;seg;glad;txt
+p3_MODE=IN
+p3_name=seg.file
+p3_optional=on
+p3_prefix_when_specified=--seg.file\=
+p3_TYPE=FILE
+p3_type=java.io.File
+p3_value=
+
+p4_default_value=
+p4_description=SNP intensity file for this sample
+p4_fileFormat=RData;snp
+p4_MODE=IN
+p4_name=snp.file
+p4_optional=
+p4_prefix_when_specified=
+p4_TYPE=FILE
+p4_type=java.io.File
+p4_value=
+
+p5_default_value=<plate.name>_<array.name>.segdat.RData
+p5_description=The name of the output file.
+p5_name=out.file.name
+p5_optional=on
+p5_prefix_when_specified=
+p5_type=java.lang.String
+
+p6_MODE=IN
+p6_TYPE=FILE
+p6_choiceDir=ftp\://gpftp.broadinstitute.org/module_support_files/HAPSEG_1.1.1/BEAGLE/phasedBGL/
+p6_choiceDirFilter=type=dir
+p6_choiceAllowCustom=false
+p6_default_value=ftp\://gpftp.broadinstitute.org/module_support_files/HAPSEG_1.1.1/BEAGLE/phasedBGL/hg19/
+p6_description=Which build of the human genome to use.  Only 'hg18' and 'hg19' are currently supported.  This will select a set of phased BEAGLE files.
+p6_name=genome.build
+p6_optional=
+p6_prefix_when_specified=
+p6_type=java.io.File
+p6_value=
+
+p7_default_value=SNP_6.0
+p7_description=The chip type used. The supported values are currently 'SNP_250K_STY' and 'SNP_6.0'
+p7_name=platform
+p7_optional=
+p7_prefix_when_specified=
+p7_type=java.lang.String
+p7_value=SNP_250K_STY;SNP_6.0
+
+p8_default_value=
+p8_description=Population to run with (currently supported values\: CEPH, CH, JA, YOR)
+p8_name=use.pop
+p8_optional=
+p8_prefix_when_specified=
+p8_type=java.lang.String
+p8_value=CEPH;CH;JA;YOR
+
+p9_default_value=TRUE
+p9_description=If TRUE will impute genotypes via BEAGLE. We recommend this be TRUE unless there's a reason to do otherwise
+p9_name=impute.gt
+p9_optional=
+p9_prefix_when_specified=
+p9_type=java.lang.String
+p9_value=TRUE;FALSE
+
+p10_default_value=TRUE
+p10_description=If TRUE will plot JPG images of the segmentations fits
+p10_name=plot.segfit
+p10_optional=
+p10_prefix_when_specified=
+p10_type=java.lang.String
+p10_value=TRUE;FALSE
+
+p11_default_value=TRUE
+p11_description=If TRUE will merge small segments
+p11_name=merge.small
+p11_optional=
+p11_prefix_when_specified=
+p11_type=java.lang.String
+p11_value=TRUE;FALSE
+
+p12_default_value=TRUE
+p12_description=if TRUE will merge close segments
+p12_name=merge.close
+p12_optional=
+p12_prefix_when_specified=
+p12_type=java.lang.String
+p12_value=TRUE;FALSE
+
+p13_default_value=10
+p13_description=Minimum segment size
+p13_name=min.seg.size
+p13_optional=
+p13_prefix_when_specified=
+p13_type=java.lang.Integer
+
+p14_default_value=FALSE
+p14_description=If TRUE this sample will be treated as a normal
+p14_name=normal
+p14_optional=
+p14_prefix_when_specified=
+p14_type=java.lang.String
+p14_value=TRUE;FALSE
+
+p15_default_value=0.05
+p15_description=Outlier probability
+p15_name=out.p
+p15_optional=
+p15_prefix_when_specified=
+p15_type=java.lang.Float
+
+p16_default_value=1e-10
+p16_description=Segmentation threshold
+p16_name=seg.merge.thresh
+p16_optional=
+p16_prefix_when_specified=
+p16_type=java.lang.Float
+
+p17_default_value=FALSE
+p17_description=If TRUE will use a matched normal sample if one is provided
+p17_name=use.normal
+p17_optional=
+p17_prefix_when_specified=
+p17_type=java.lang.String
+p17_value=TRUE;FALSE
+
+p18_default_value=FALSE
+p18_description=If TRUE will remove the X chromosome from the calculation
+p18_name=drop.x
+p18_optional=
+p18_prefix_when_specified=
+p18_type=java.lang.String
+p18_value=TRUE;FALSE
+
+p19_default_value=TRUE
+p19_description=If TRUE will remove the Y chromosome from the calculation
+p19_name=drop.y
+p19_optional=
+p19_prefix_when_specified=
+p19_type=java.lang.String
+p19_value=TRUE;FALSE
+
+p20_default_value=
+p20_description=If using a matched normal sample, a Birdseed calls file needs to be supplied
+p20_fileFormat=calls.txt
+p20_MODE=IN
+p20_name=calls.file
+p20_optional=on
+p20_prefix_when_specified=--calls.file\=
+p20_TYPE=FILE
+p20_type=java.io.File
+p20_value=
+
+p21_default_value=
+p21_description=If using a matched sample, the name of that matched normal sample
+p21_name=mn.sample
+p21_optional=on
+p21_prefix_when_specified=--mn.sample\=
+p21_type=java.lang.String
+
+p22_default_value=NA
+p22_description=If 'On', will perform a calibration on the input data.  If 'Off', no calibration will be performed. If left at the default value (Inferred), the calibration status will be inferred.
+p22_name=calibrate.data
+p22_optional=
+p22_prefix_when_specified=
+p22_type=java.lang.String
+p22_value=NA\=Inferred;TRUE\=On;FALSE\=Off
+
+p23_default_value=
+p23_description=If calibrate.data is 'On' the user must supply a Birdseed clusters file
+p23_fileFormat=clusters.txt
+p23_MODE=IN
+p23_name=clusters.file
+p23_optional=on
+p23_prefix_when_specified=--clusters.file\=
+p23_TYPE=FILE
+p23_type=java.io.File
+p23_value=
+
+p24_default_value=
+p24_description=An optional file storing the previous theta values
+p24_fileFormat=
+p24_MODE=IN
+p24_name=prev.theta.file
+p24_optional=on
+p24_prefix_when_specified=--prev.theta.file\=
+p24_TYPE=FILE
+p24_type=java.io.File
+p24_value=
+
+requiredPatchLSIDs=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.server.patch\:GenePattern_3_4_2\:2
+requiredPatchURLs=http\://www.broadinstitute.org/webservices/gpModuleRepository/download/prod/patch/?file\=/GenePattern_3_4_2/broad.mit.edu\:cancer.software.genepattern.server.patch/GenePattern_3_4_2/2/GenePattern_3_4_2.zip

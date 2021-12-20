@@ -1,0 +1,58 @@
+#  NOTE: the job will fail if the GpUnit test user has not accepted the license.
+#
+# Note: this is a long-running test (~1 hr)
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00308:2
+module: HAPSEG
+name: HAPSEG valid_input_test
+description: Positive test of HAPSEG with the example data from CGA.
+params:
+       plate.name: "DRAWS"
+       array.name: "DRAWS_p_Sty11_Mapping250K_Sty_A01_66524"
+       seg.file: "<%gpunit.testData%>gpunit/HAPSEG/v2/valid_input_test/mix250K_seg_out.txt"
+       snp.file: "<%gpunit.testData%>gpunit/HAPSEG/v2/valid_input_test/DRAWS_p_Sty11_Mapping250K_Sty_A01_66524.snp_byAllele.RData"
+       out.file.name: "<plate.name>_<array.name>.segdat.RData"
+       genome.build: "<%gpunit.testData%>module_support_files/HAPSEG_1.1.1/BEAGLE/phasedBGL/hg18/"
+       platform: "SNP_250K_STY"
+       use.pop: "CEPH"
+       impute.gt: "FALSE"
+       plot.segfit: "TRUE"
+       merge.small: "TRUE"
+       merge.close: "TRUE"
+       min.seg.size: "5"
+       normal: "FALSE"
+       out.p: "0.001"
+       seg.merge.thresh: "1e-10"
+       use.normal: "TRUE"
+       drop.x: "TRUE"
+       drop.y: "FALSE"
+       calls.file: ""
+       mn.sample: ""
+       calibrate.data: "TRUE"
+       clusters.file: "<%gpunit.testData%>gpunit/HAPSEG/v2/valid_input_test/birdclusters.RData"
+       #prev.theta.file: 
+assertions:
+       jobStatus: success
+#       diffCmd: ./stdoutDiff.sh
+#       files:
+#           "stdout.txt":
+#               diff: "<%gpunit.resultData%>HAPSEG/v2/valid_input_test/stdout.txt"
+
+# Note: On its own, this is *not* considered to be a definitive regression test.
+# Jeff Gentry of the CGA reports that he has seen cases where the stdout matched 
+# exactly yet the downstream answers coming out of ABSOLUTE.summarize were 
+# incorrect.  While it might be theoretically possible to compare the Rdata file,
+# JG has seen the converse, where the RData does not match exactly yet the 
+# ABS.sum result is correct.  He regards that comparison as not worth the effort.
+
+# The *best* comparison is impractical in a "quick" regression test setting, but
+# may be worthwhile in a sporadically-run setting.  It goes like this:
+# - Run full batch of samples through HS (the paper_example is fine)
+#   - check stdout as per above
+# - Run those results through ABS
+#   - check stdout (see ABS test)
+# - Run those results through ABS.sum
+#   - compare the "calls" file.  It should match expected, within a reasonable
+#     delta (see ABS.sum test for details).
+#   - *This is the crucial comparison in the workflow*
+# - ABS.rvw can be checked by using a modified version of that ABS.sum
+#   "known good".  See that test for details.

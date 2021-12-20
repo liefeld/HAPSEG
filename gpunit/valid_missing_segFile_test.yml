@@ -1,0 +1,38 @@
+#  NOTE: the job will fail if the GpUnit test user has not accepted the license.
+#
+# Note: this is a long-running test (~1 hr)
+#module: urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00308:2
+module: HAPSEG
+name: HAPSEG missing_segfile_test
+description: Test HAPSEG with the example data from CGA but without the segfile.
+params:
+       plate.name: "DRAWS"
+       array.name: "DRAWS_p_Sty11_Mapping250K_Sty_A01_66524"
+       #seg.file: 
+       snp.file: "<%gpunit.testData%>gpunit/HAPSEG/v2/valid_input_test/DRAWS_p_Sty11_Mapping250K_Sty_A01_66524.snp_byAllele.RData"
+       out.file.name: "<plate.name>_<array.name>.segdat.RData"
+       genome.build: "<%gpunit.testData%>module_support_files/HAPSEG_1.1.1/BEAGLE/phasedBGL/hg18/"
+       platform: "SNP_250K_STY"
+       use.pop: "CEPH"
+       impute.gt: "FALSE"
+       plot.segfit: "TRUE"
+       merge.small: "TRUE"
+       merge.close: "TRUE"
+       min.seg.size: "5"
+       normal: "FALSE"
+       out.p: "0.001"
+       seg.merge.thresh: "1e-10"
+       use.normal: "TRUE"
+       drop.x: "TRUE"
+       drop.y: "FALSE"
+       calls.file: ""
+       mn.sample: ""
+       calibrate.data: "TRUE"
+       clusters.file: "<%gpunit.testData%>gpunit/HAPSEG/v2/valid_input_test/birdclusters.RData"
+       #prev.theta.file: 
+assertions:
+       jobStatus: success
+#       diffCmd: ./stdoutDiff.sh
+#       files:
+#           "stdout.txt":
+#               diff: "<%gpunit.resultData%>HAPSEG/v2/valid_missing_segFile_test/stdout.txt"
