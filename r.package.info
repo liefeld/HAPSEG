@@ -30,4 +30,4 @@ AnnotationDbi
 annotate
 geneplotter
 DNAcopy
-HAPSEG,1.1.1,CUSTOM,ftp://gpftp.broadinstitute.org/tmp/HS/HAPSEG_1.1.1.tar.gz,ftp://gpftp.broadinstitute.org/tmp/HS/HAPSEG_1.1.1.tgz,ftp://gpftp.broadinstitute.org/tmp/HS/HAPSEG_1.1.1.zip
+HAPSEG,1.1.1,CUSTOM,https://datasets.genepattern.org/gpftp/tmp/HS/HAPSEG_1.1.1.tar.gz,https://datasets.genepattern.org/gpftp/tmp/HS/HAPSEG_1.1.1.tgz,https://datasets.genepattern.org/gpftp/tmp/HS/HAPSEG_1.1.1.zip
